@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Cosmetics-Shop</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Product Detail</title>
+
+    <!-- Bootstrap and Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Định vị container cho hình ảnh */
+        .box-img-hover {
+            position: relative;
+        }
+
+        /* Căn chỉnh phần tên và giá sản phẩm */
+        .why-text {
+            padding: 10px;
+            text-align: left;  /* Căn trái cho tên và giá */
+        }
+
+        /* Tên sản phẩm */
+        .why-text h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Giá sản phẩm */
+        .why-text h5 {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .why-text h5 span {
+            margin-right: 10px;
+        }
+
+        /* Định dạng giá cũ */
+        .why-text h5 span[style="text-decoration: line-through;"] {
+            color: #aaa;
+        }
+
+
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #ffffff;
+            background: url(../images/all-bg-title.jpg);
+            color: #df262c;
+            padding: 40px; /* Tăng padding */
+            text-align: center;
+            font-weight: bold;
+            margin: 0 auto;
+            max-width: 1200px; /* Đặt chiều rộng tối đa */
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
+            text-align: center;
+        }
+        .fa-star {
+            color: #f3f3f3; /* Màu vàng cho sao */
+        }
+
+        .breadcrumb {
+            margin: 20px 0;
+            background-color: transparent;
+            padding: 0;
+            text-align: center;
+        }
+
+        .breadcrumb-item a {
+            color: #000907;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+
+        .product-details {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+        }
+
+        .product-image {
+            max-height: 400px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-description {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #ff5722;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .btn-pink {
+            background-color: #ef6a6a; /* Màu hồng nền */
+            border-color: #8e1818; /* Màu hồng viền */
+            color: white; /* Màu chữ */
+        }
+
+        .btn-pink:hover {
+            background-color: #f35156; /* Màu đậm hơn khi hover */
+            border-color: #ea474b;
+            color: white;
+        }
+        .review-section {
+            margin-top: 50px;
+        }
+
+        .review-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fefefe;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-author {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .review-rating .fa-star {
+            color: #ffc107;
+        }
+
+        .footer {
+            background-color: #000907;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+        /* Màu hồng đậm */
+        .btn-outline-pink {
+            border-color: #e91e63; /* Viền hồng đậm */
+            color: #000000;        /* Chữ màu đen */
+        }
+
+        .btn-outline-pink:hover {
+            background-color: #f36595; /* Nền hồng đậm khi hover */
+            color: white;              /* Chữ trắng khi hover */
+            border-color: #f15489;
+        }
+
+        /* Màu xanh ngọc */
+        .btn-outline-teal {
+            border-color: #20c997; /* Viền xanh ngọc */
+            color: #000000;        /* Chữ màu đen */
+        }
+
+        .btn-outline-teal:hover {
+            background-color: #20c997; /* Nền xanh ngọc khi hover */
+            color: white;              /* Chữ trắng khi hover */
+            border-color: #20c997;
+        }
+        /* Sản phẩm - hiệu ứng khi nhấn */
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:active {
+            transform: scale(0.98); /* Thu nhỏ một chút khi nhấn */
+            box-shadow: 0 10px 15px rgb(147, 145, 145); /* Tạo bóng đổ mạnh hơn khi nhấn */
+        }
+
+        /* Thêm hiệu ứng hover cho card (sản phẩm) */
+        .card:hover {
+            transform: translateY(-5px); /* Đẩy sản phẩm lên một chút khi hover */
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ khi hover */
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Header -->
+<div class="header">
+    <h1>COSMETICS SHOP</h1>
+</div>
+
+<div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item"><a href="/product_page">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="${detail.name}">Product Detail</li>
+        </ol>
+    </nav>
+
+    <!-- Product Details -->
+    <div class="product-details row">
+        <div class="col-md-6">
+            <img class="img-fluid product-image" th:src="@{'/images/' + ${detail.imageFilename}}" alt="Product Image">
+        </div>
+        <div class="col-md-6">
+            <h2 class="product-title" th:text="${detail.name}">Product Name</h2>
+            <p class="product-description" th:text="${detail.description}">Product Description</p>
+            <h4 class="price">
+                <span th:text="${'$' + detail.price}">Price</span>
+            </h4>
+            <div class="input-group quantity mb-5" style="width: 100px;">
+                <div class="input-group-btn">
+                    <button class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="decreaseQuantity(this)">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <input type="text" class="form-control form-control-sm text-center border-0 quantity-input" value="1" min="1">
+                <div class="input-group-btn">
+                    <button class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="increaseQuantity(this)">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-pink rounded-pill px-4 py-2 mb-4 text-white">
+                <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
+            </a>
+            <ul class="list-unstyled mt-4">
+                <li><strong>Skin Type:</strong> Suitable for all skin types</li>
+                <li><strong>Ingredients:</strong> Natural extracts, Vitamin E, Aloe Vera</li>
+                <li><strong>Usage:</strong> Apply a small amount to face and neck daily</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <!-- Reviews Section -->
+    <!-- Reviews -->
+    <div class="review-section">
+        <h3>Reviews</h3>
+        <div class="review-item">
+            <div class="review-author">Jason Smith</div>
+            <div class="review-rating">
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star-half-alt"></i>
+            </div>
+            <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc. Suspendisse ultricies nisi vel quam suscipit !</p>
+        </div>
+        <div class="review-item">
+            <div class="review-author">Anna Lee</div>
+            <div class="review-rating">
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <p>Amazing perfume. Highly recommend!</p>
+        </div>
+        <div class="review-item">
+            <div class="review-author">Linda Ngo</div>
+            <div class="review-rating">
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star-half-alt"></i>
+            </div>
+            <p>The generated Lorem Ipsum is therefore always free from repetition injected humour ?</p>
+        </div>
+        <div class="review-item">
+            <div class="review-author">Tony Phan</div>
+            <div class="review-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star text-warning"></i>
+            </div>
+            <p>The generated Lorem Ipsum is there ?</p>
+        </div>
+    </div>
+</div>
+
+<!-- Review Item 4 -->
+
+
+<div class="container my-5">
+    <h3 class="text-center" style="font-size: 40px;">Featured Products</h3>
+
+    <div class="container py-5">
+        <div class="row special-list">
+            <!-- Lặp qua tất cả các sản phẩm -->
+            <div class="col-md-6 col-lg-4 col-xl-3" th:each="productPage : ${productPage}">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative">
+                        <!-- Product Image -->
+                        <img src="/images/sample-grapes.jpg" th:src="@{'/images/' + ${productPage.imageFilename}}" class="card-img-top" alt="Product Image">
+                        <!-- Product Badge -->
+                        <div class="badge bg-warning text-white position-absolute top-0 start-0 m-2 px-3 py-1">New</div>
+                    </div>
+                    <!-- Product Details -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold text-black" th:text="${productPage.name}">Product Name</h5>
+                        <h6 class="text-dark fw-bold mb-3">
+                            $<span th:text="${productPage.price}"></span>
+                        </h6>
+                        <!-- Add to Cart Button -->
+                        <a href="#" class="btn btn-outline-pink w-100 rounded-pill">
+                            <i class="bi bi-cart-plus-fill me-2"></i>Add to cart
+                        </a>
+                        <a class="btn btn-outline-teal w-100 mt-2 rounded-pill" th:href="@{/detail/{id}(id=${productPage.id})}">
+                            <i class="bi bi-eye me-2"></i>View
+                        </a>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+    <!-- Link đến trang chi tiết sản phẩm -->
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2024 Cosmetics Shop. All rights reserved.</p>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Hàm tăng số lượng
+    function increaseQuantity(button) {
+        const input = button.parentElement.parentElement.querySelector('.quantity-input');
+        let value = parseInt(input.value) || 0; // Lấy giá trị hiện tại
+        input.value = value + 1; // Tăng lên 1
+    }
+
+    // Hàm giảm số lượng
+    function decreaseQuantity(button) {
+        const input = button.parentElement.parentElement.querySelector('.quantity-input');
+        let value = parseInt(input.value) || 0; // Lấy giá trị hiện tại
+        if (value > 1) { // Chỉ giảm nếu giá trị lớn hơn 1
+            input.value = value - 1;
+        }
+    }
+</script>
+</body>
+
+</html>

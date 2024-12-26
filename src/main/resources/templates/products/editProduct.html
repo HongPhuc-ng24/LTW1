@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Loại Sản phẩm</title>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-label {
+      font-weight: bold;
+    }
+    .form-control:focus {
+      border-color: #e47477;
+      box-shadow: 0 0 0 0.25rem rgb(168, 162, 163);
+    }
+    .btn-primary {
+      background-color: #cc5558;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #e8494e;
+    }
+    .btn-secondary {
+      background-color: #e1555a;
+      border: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover {
+      background-color: #e13439;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <div class="form-container">
+    <h3 class="text-center mb-4" style="font-size: 36px; color: #d62e32;">Chỉnh Sửa Sản phẩm</h3>
+    <a th:href="@{/admin/product_page}" class="btn btn-secondary mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+      </svg>
+      Quay lại danh sách
+    </a>
+
+    <form th:action="@{/admin/product_page/update/{id}(id=${productPage.id})}" th:object="${productPage}" method="post">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="name" class="form-label">Tên Sản phẩm</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Nhập tên sản phẩm"
+                 th:value="${productPage.name}" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="price" class="form-label">Giá Sản phẩm</label>
+          <input type="number" id="price" name="price" class="form-control" placeholder="Nhập giá sản phẩm"
+                 th:value="${productPage.price}" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="price2" class="form-label">Giá Cũ (nếu có)</label>
+          <input type="number" id="price2" name="price2" class="form-control" placeholder="Nhập giá cũ"
+                 th:value="${productPage.price1}">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="imageFilename" class="form-label">Đường dẫn hình ảnh</label>
+          <input type="text" id="imageFilename" name="imageFilename" class="form-control" placeholder="Nhập URL hình ảnh"
+                 th:value="${productPage.imageFilename}" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="description" class="form-label">Loại sản phẩm</label>
+          <textarea id="description" name="description" class="form-control" rows="2" placeholder="Nhập mô tả sản phẩm"
+                    th:value="${productPage.title}" required></textarea>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="percent" class="form-label">Giảm giá (%)</label>
+          <input type="number" id="percent" name="percent" class="form-control" placeholder="Nhập tỷ lệ giảm giá"
+                 th:value="${productPage.Sales}" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="Sales" class="form-label">Sales</label>
+          <input type="text" id="Sales" name="Sales" class="form-control" placeholder="Nhập thông tin "
+                 th:value="${productPage.Sales}" required>
+        </div>
+
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary btn-lg w-100">Lưu thay đổi</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

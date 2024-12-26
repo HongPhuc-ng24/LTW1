@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Dashboard</title>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    body { display: flex; }
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      background-color: #343a40;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+    }
+    .sidebar a {
+      color: #c2c7d0;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      transition: background 0.3s;
+    }
+    .sidebar a:hover { background-color: #495057; color: white; }
+    .logout-btn {
+      margin-top: auto;
+      background-color: #dc3545;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    .logout-btn:hover { background-color: #c82333; }
+    .content { margin-left: 260px; padding: 20px; width: 100%; }
+
+    /* Màu hồng pastel cho nút */
+    .btn-pastel {
+      background-color: #7fecdb !important;
+      border-color: #26d9be !important;
+      color: white !important;
+    }
+    .btn-pastel:hover {
+      background-color: #ed749b !important;
+      border-color: #ef6e72 !important;
+    }
+
+    /* Thanh tìm kiếm */
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+    .search-bar input {
+      border-radius: 5px 0 0 5px;
+      border: 1px solid #ced4da;
+    }
+    .search-bar button {
+      border-radius: 0 5px 5px 0;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+      gap: 10px; /* Khoảng cách giữa input và button */
+      max-width: 400px; /* Đặt chiều rộng tối đa cho thanh tìm kiếm */
+    }
+
+    .search-input {
+      flex: 1; /* Cho phép ô input chiếm hết chiều rộng còn lại */
+      padding: 10px; /* Khoảng cách trong ô input */
+      border-radius: 5px 0 0 5px; /* Bo góc cho ô input */
+      border: 1px solid #ced4da; /* Đặt viền cho ô input */
+    }
+
+    .search-bar button {
+      padding: 10px 15px; /* Đặt padding cho nút tìm kiếm */
+      border-radius: 0 5px 5px 0; /* Bo góc cho nút tìm kiếm */
+      background-color: #ea6367; /* Màu nền cho nút tìm kiếm */
+      border: 1px solid #ef8487; /* Đặt viền cho nút tìm kiếm */
+      color: white; /* Màu chữ trong nút */
+    }
+
+    .search-bar button:hover {
+      background-color: #ea6367; /* Màu nền khi hover */
+      border-color: #ec8689; /* Màu viền khi hover */
+    }
+
+  </style>
+
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="p-3 fs-5 fw-bold border-bottom">Start Bootstrap
+  </div>  <a href="#"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+  <div class="fw-bold mt-3 ms-2">INTERFACE</div>
+  <a href="#"><i class="bi bi-layout-sidebar me-2"></i>Layouts</a>
+  <a href="#"><i class="bi bi-file-earmark-text me-2"></i>Pages</a>
+  <div class="fw-bold mt-3 ms-2">ADDONS</div>
+  <a href="#"><i class="bi bi-bar-chart me-2"></i>Charts</a>
+  <a href="#"><i class="bi bi-table me-2"></i>Tables</a>
+  <a href="/login" class="logout-btn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+  <!-- Navbar với thanh tìm kiếm -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand fs-4 fw-bold">Admin Dashboard</span>
+      <div class="search-bar me-3">
+        <form th:action="@{/product_page/search}" method="get" style="display: inline; width: 100%;">
+          <input type="text" name="name" placeholder="Search..." class="search-input">
+          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+
+
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" th:text="${#authentication != null ? 'Xin chào, ' + #authentication.name : 'Xin chào, Hong Phuc Nguyen'}"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Title & Add Product Button -->
+  <div class="container mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold">Quản Lý Sản Phẩm</h2>
+      <a href="/admin/product_page/add" class="btn btn-pastel"><i class="bi bi-plus-circle me-2"></i>Thêm Sản Phẩm</a>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <div class="container">
+    <div class="row g-4">
+      <!-- Empty Product Case -->
+      <div class="col-md-12 text-center" th:if="${productPage == null || #lists.isEmpty(productPage)}">
+        <div class="alert alert-warning" role="alert">
+          Hiện không có sản phẩm nào.
+        </div>
+      </div>
+
+      <!-- Product Cards -->
+      <div class="col-lg-3 col-md-4 col-sm-6" th:each="productPage : ${productPage}">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="position-relative">
+            <span class="badge bg-danger position-absolute top-0 end-0 m-2"
+                  th:if="${productPage.Sales != null}"
+                  th:text="${productPage.Sales}"></span>
+            <img th:src="@{'/images/' + ${productPage.imageFilename != null ? productPage.imageFilename : 'default.jpg'}}"
+                 class="card-img-top img-fluid" alt="Product Image" style="object-fit: cover; height: 200px;">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-truncate" th:text="${productPage.name}"></h5>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold text-success" th:text="${productPage.price + '$'}"></span>
+              <span class="text-muted text-decoration-line-through"
+                    th:if="${productPage.price1 != null}"
+                    th:text="${productPage.price1 + '$'}"></span>
+            </div>
+            <div class="btn-group mt-auto">
+              <a th:href="@{/admin/product_page/edit/{id}(id=${productPage.id})}"
+                 class="btn btn-pastel btn-sm">
+                <i class="bi bi-pencil-fill"></i> Edit
+              </a>
+              <a th:href="@{/admin/product_page/delete/{id}(id=${productPage.id})}"
+                 class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-trash-fill"></i> Delete
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

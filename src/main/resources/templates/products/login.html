@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #ffffff;
+      background: url(../images/images.jpg)  /* Light red background */
+    }
+
+    .login-container {
+      display: flex;
+      background-color: #ffffff; /* Light pink background */
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Shadow */
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .login-image {
+      flex: 1;
+      background: url(../images/blog-img-01.jpg) no-repeat center center/cover;
+    }
+
+    .login-form {
+      flex: 1;
+      padding: 40px;
+
+    }
+
+    .login-form h2 {
+      font-weight: bold;
+      color: #e14d51;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: #ea6367;
+      border: none;
+      color: #ffffff;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #ec8083;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .login-footer a {
+      color: #f15477;
+      text-decoration: none;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="login-container">
+    <div class="login-image"></div>
+    <div class="login-form">
+      <h2>Login</h2>
+      <form th:action="@{/login}" method="POST">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <div class="login-footer">
+        <p>
+          <a th:href="@{/forgot-password}">Forgot password?</a> |
+          <a th:href="@{/register}">Register here</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYCom3FH7tZH8fHgxGh4zjFlzNH6IBfZxynqD5x2hm1egJLNs3zgF5Kii"
+        crossorigin="anonymous"></script>
+</body>
+</html>
